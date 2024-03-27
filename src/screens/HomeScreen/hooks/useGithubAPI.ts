@@ -1,8 +1,8 @@
 import {useEffect, useState} from 'react';
-import {IRepository} from './../../../models/githubAPIResponse';
+import {IRepository} from '../../../shared/models/githubAPIResponse';
+import {API_URL} from '../../../shared/envVariables';
 
-const API_URL =
-  'https://api.github.com/users/JakeWharton/repos?type=owner&page=1&per_page=10';
+const API_URL_EX = '/repos?type=owner&page=1&per_page=10';
 
 const useGithubAPI = () => {
   const [repositories, setRepositories] = useState<IRepository[]>([]);
@@ -15,7 +15,7 @@ const useGithubAPI = () => {
   const fetchGithubAPI = async () => {
     setLoadingRepositories(true);
     try {
-      const response = await fetch(API_URL);
+      const response = await fetch(API_URL + API_URL_EX);
       const data = await response.json();
       setRepositories(data);
     } catch (error: unknown) {

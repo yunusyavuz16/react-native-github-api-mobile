@@ -1,39 +1,38 @@
-import Toast from 'react-native-toast-message';
-import {IRepository} from '../../../../models/githubAPIResponse';
-import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {Text, TouchableOpacity, View} from 'react-native';
+import {showMessage} from 'react-native-flash-message';
+import {
+  borderStyles,
+  marginStyles,
+  paddingStyles,
+  textColorStyles,
+} from '../../../../shared/styles';
 
 interface IRepositoryItemProps {
   full_name: string;
+  width: number | undefined;
 }
 
-const RepositoryItem: React.FC<IRepositoryItemProps> = ({full_name}) => {
+const RepositoryItem: React.FC<IRepositoryItemProps> = ({full_name, width}) => {
   const showToast = () => {
-    Toast.show({
-      text1: 'Repo Detayları',
-      text2: full_name,
-      position: 'bottom',
+    showMessage({
+      message: full_name,
       type: 'info',
-      visibilityTime: 3000,
     });
   };
 
   return (
-    <TouchableOpacity style={styles.itemContainer} onPress={showToast}>
-      <View style={styles.itemInnerView}>
-        <Text style={styles.textColor}>{full_name}</Text>
+    <TouchableOpacity onPress={showToast}>
+      <View
+        style={[
+          paddingStyles.padding20,
+          marginStyles.marginHorizontal20,
+          {width: width ? width * 9 : undefined},
+          borderStyles.borderBottomSecondary,
+        ]}>
+        <Text style={textColorStyles.textColor}>{full_name}</Text>
       </View>
     </TouchableOpacity>
   );
 };
-
-const styles = StyleSheet.create({
-  textColor: {color: 'black'},
-  itemInnerView: {
-    padding: 10,
-    margin: 10,
-    backgroundColor: 'white',
-  },
-  itemContainer: {backgroundColor: 'tomato'},
-});
 
 export default RepositoryItem;

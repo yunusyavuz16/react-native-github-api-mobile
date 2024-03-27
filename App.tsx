@@ -1,39 +1,34 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- */
-
 import React from 'react';
-import {
-  SafeAreaView,
-  StyleSheet,
-  useColorScheme
-} from 'react-native';
+import {SafeAreaView, StatusBar, useColorScheme} from 'react-native';
 
-import Toast from 'react-native-toast-message';
-import { Colors } from 'react-native/Libraries/NewAppScreen';
+import FlashMessage from 'react-native-flash-message';
+import {Colors} from 'react-native/Libraries/NewAppScreen';
 import HomeScreen from './src/screens/HomeScreen';
+import {
+  COLORS,
+  flexStyles,
+  heightStyles,
+  widthStyles,
+} from './src/shared/styles';
 
 function App(): React.JSX.Element {
   const isDarkMode = useColorScheme() === 'dark';
 
   const backgroundStyle = {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-    flex: 1,
   };
 
   return (
-    <SafeAreaView style={backgroundStyle}>
-      <Toast />
+    <SafeAreaView
+      style={[flexStyles.flex, heightStyles.hFull, widthStyles.wFull]}
+      // responsive design
+    >
+      <FlashMessage />
+
+      <StatusBar backgroundColor={COLORS.primary} />
       <HomeScreen />
     </SafeAreaView>
   );
 }
-
-const styles = StyleSheet.create({
-  flex: {flex: 1, paddingTop: 50},
-});
 
 export default App;
