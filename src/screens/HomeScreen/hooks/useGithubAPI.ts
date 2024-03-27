@@ -9,27 +9,26 @@ const useGithubAPI = () => {
   const [errorRepositories, setErrorRepositories] = useState<string | null>(
     null,
   );
-  const [loadingRepositories, setLoadingRepositories] =
-    useState<boolean>(false);
-
-  const fetchGithubAPI = async () => {
-    setLoadingRepositories(true);
-    try {
-      const response = await fetch(API_URL + API_URL_EX);
-      const data = await response.json();
-      setRepositories(data);
-    } catch (error: unknown) {
-      if (error instanceof Error) {
-        setErrorRepositories(error.message);
-      } else {
-        setErrorRepositories('An unknown error occurred.');
-      }
-    } finally {
-      setLoadingRepositories(false);
-    }
-  };
+  const [loadingRepositories, setLoadingRepositories] = useState<boolean>(true);
 
   useEffect(() => {
+    const fetchGithubAPI = async () => {
+      setLoadingRepositories(true);
+      try {
+        const response = await fetch(API_URL + API_URL_EX);
+        const data = await response.json();
+        setRepositories(data);
+      } catch (error: unknown) {
+        if (error instanceof Error) {
+          setErrorRepositories(error.message);
+        } else {
+          setErrorRepositories('An unknown error occurred.');
+        }
+      } finally {
+        setLoadingRepositories(false);
+      }
+    };
+
     fetchGithubAPI();
   }, []);
 

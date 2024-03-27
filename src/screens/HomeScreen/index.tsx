@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { FlatList, ScrollView, View } from 'react-native';
+import React, {useState} from 'react';
+import {FlatList, ScrollView, View} from 'react-native';
 import {
   backgroundColorStyles,
   borderRadiusStyles,
@@ -7,13 +7,13 @@ import {
   flexStyles,
   marginStyles,
   paddingStyles,
-  shadowStyles
+  shadowStyles,
 } from '../../shared/styles';
 import HomeListSkeleton from './components/HomeListSkeleton';
 import RepositoryItem from './components/RepositoryItem';
 import TabButton from './components/TabButton';
 import useGithubAPI from './hooks/useGithubAPI';
-import { LayoutOptionEnum } from './models';
+import {LayoutOptionEnum} from './models';
 
 const HomeScreen = () => {
   const {errorRepositories, loadingRepositories, repositories} = useGithubAPI();
@@ -42,7 +42,16 @@ const HomeScreen = () => {
   };
 
   return (
-    <View style={[flexStyles.flex, paddingStyles.padding20]}>
+    <View
+      style={[
+        flexStyles.flex,
+        marginStyles.margin,
+        paddingStyles.padding,
+        backgroundColorStyles.backgroundColor,
+        shadowStyles.shadow,
+        borderRadiusStyles.borderRadius,
+        borderStyles.borderWhite,
+      ]}>
       <View
         style={[
           flexStyles.flexRow,
@@ -70,22 +79,17 @@ const HomeScreen = () => {
           itemIdentifier={LayoutOptionEnum.threeViewsInRow}
         />
       </View>
-      <ScrollView
-        horizontal
-        showsHorizontalScrollIndicator={false}
-        directionalLockEnabled={true}
-        alwaysBounceVertical={false}
-        style={[
-          backgroundColorStyles.backgroundColor,
-          shadowStyles.shadow,
-          flexStyles.flex,
-          borderRadiusStyles.borderRadius,
-          borderStyles.borderWhite,
-        ]}>
-        {loadingRepositories ? (
-          <HomeListSkeleton />
-        ) : (
+      {getColumnCount(layout) > 1 ? (
+        <ScrollView
+          horizontal
+          showsHorizontalScrollIndicator={false}
+          directionalLockEnabled={true}
+          alwaysBounceVertical={false}
+          style={[flexStyles.flex]}>
           <FlatList
+            ListEmptyComponent={
+              loadingRepositories ? <HomeListSkeleton /> : null
+            }
             data={repositories}
             renderItem={({item}) => (
               <RepositoryItem full_name={item.full_name} width={columnWidth} />
@@ -98,8 +102,23 @@ const HomeScreen = () => {
             key={layout}
             numColumns={getColumnCount(layout)}
           />
-        )}
-      </ScrollView>
+        </ScrollView>
+      ) : (
+        <FlatList
+          ListEmptyComponent={loadingRepositories ? <HomeListSkeleton /> : null}
+          data={repositories}
+          renderItem={({item}) => (
+            <RepositoryItem full_name={item.full_name} width={columnWidth} />
+          )}
+          keyExtractor={item => item.id.toString()}
+          removeClippedSubviews={true}
+          initialNumToRender={5}
+          windowSize={5}
+          maxToRenderPerBatch={5}
+          key={layout}
+          numColumns={getColumnCount(layout)}
+        />
+      )}
     </View>
   );
 };
