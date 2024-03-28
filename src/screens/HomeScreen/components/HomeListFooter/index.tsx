@@ -1,15 +1,12 @@
-import {View, Text, TouchableOpacity} from 'react-native';
 import React from 'react';
+import { Text, View } from 'react-native';
 import {
-  backgroundColorStyles,
-  borderRadiusStyles,
-  borderStyles,
   flexStyles,
   fontStyles,
   marginStyles,
-  paddingStyles,
   textColorStyles,
 } from '../../../../shared/styles';
+import HomeListButton from '../HomeListButton';
 
 interface IFooterProps {
   pageNumber: number;
@@ -30,30 +27,20 @@ const Footer: React.FC<IFooterProps> = ({
         flexStyles.justifySpaceBetween,
         flexStyles.alignCenter,
       ]}>
-      <TouchableOpacity
-        style={[
-          paddingStyles.padding15,
-          marginStyles.margin,
-          borderStyles.borderPrimary,
-          borderRadiusStyles.borderRadius,
-        ]}
-        disabled={pageNumber === 1}
-        onPress={handlePreviousPage}>
-        <Text style={textColorStyles.textColorPrimary}>Geri</Text>
-      </TouchableOpacity>
+      <HomeListButton
+        onPress={handlePreviousPage}
+        label="Geri"
+        isDisabled={pageNumber === 1}
+        variant={pageNumber > 1 ? 'primary' : 'secondary'}
+      />
       <Text style={[textColorStyles.textColor, fontStyles.fontBold]}>
         Sayfa: {pageNumber}
       </Text>
-      <TouchableOpacity
-        style={[
-          paddingStyles.padding15,
-          marginStyles.margin,
-          borderRadiusStyles.borderRadius,
-          backgroundColorStyles.backgroundPrimary,
-        ]}
-        onPress={handleNextPage}>
-        <Text style={textColorStyles.textWhite}>İleri</Text>
-      </TouchableOpacity>
+      <HomeListButton
+        onPress={handleNextPage}
+        label="İleri"
+        variant="primary"
+      />
     </View>
   );
 };

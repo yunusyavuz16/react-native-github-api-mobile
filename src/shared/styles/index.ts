@@ -2,7 +2,7 @@ import {StyleSheet} from 'react-native';
 
 export const COLORS = {
   primary: 'rgb(85,124,230)',
-  secondary: '#FFD700',
+  secondary: 'rgb(200,200,200)',
   white: '#FFFFFF',
   black: '#000000',
   gray: 'rgb(200,200,200)',
@@ -56,7 +56,9 @@ export const paddingStyles = StyleSheet.create({
   padding: {
     padding: 10,
   },
-
+  paddingHorizontal20: {
+    paddingHorizontal: 20,
+  },
   padding15: {
     padding: 15,
   },
@@ -89,6 +91,9 @@ export const backgroundColorStyles = StyleSheet.create({
   },
   backgroundPrimary: {
     backgroundColor: COLORS.primary,
+  },
+  backgroundSecondary: {
+    backgroundColor: COLORS.secondary,
   },
 });
 

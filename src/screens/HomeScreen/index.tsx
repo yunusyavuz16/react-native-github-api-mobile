@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { FlatList, View } from 'react-native';
+import React, {useState} from 'react';
+import {FlatList, View} from 'react-native';
 import {
   backgroundColorStyles,
   borderRadiusStyles,
@@ -7,15 +7,15 @@ import {
   flexStyles,
   marginStyles,
   paddingStyles,
-  shadowStyles
+  shadowStyles,
 } from '../../shared/styles';
 import HomeListContainer from './components/HomeListContainer';
 import Footer from './components/HomeListFooter';
 import HomeListSkeleton from './components/HomeListSkeleton';
 import RepositoryItem from './components/RepositoryItem';
-import TabButton from './components/TabButton';
 import useGithubAPI from './hooks/useGithubAPI';
-import { LayoutOptionEnum } from './models';
+import {LayoutOptionEnum} from './models';
+import HomeListButton from './components/HomeListButton';
 
 const HomeScreen = () => {
   const {
@@ -51,6 +51,10 @@ const HomeScreen = () => {
     }
   };
 
+  const handlePress = (itemIdentifier: LayoutOptionEnum) => () => {
+    setLayout(itemIdentifier);
+  };
+
   return (
     <View
       style={[
@@ -68,25 +72,28 @@ const HomeScreen = () => {
           flexStyles.justifySpaceAround,
           marginStyles.marginBottom20,
         ]}>
-        <TabButton
+        <HomeListButton
           label={LayoutOptionEnum.oneViewInRow}
-          setLayout={setLayout}
-          layout={layout}
-          itemIdentifier={LayoutOptionEnum.oneViewInRow}
+          onPress={handlePress(LayoutOptionEnum.oneViewInRow)}
+          variant={
+            layout === LayoutOptionEnum.oneViewInRow ? 'primary' : 'classic'
+          }
         />
 
-        <TabButton
+        <HomeListButton
           label={LayoutOptionEnum.twoViewsInRow}
-          setLayout={setLayout}
-          layout={layout}
-          itemIdentifier={LayoutOptionEnum.twoViewsInRow}
+          onPress={handlePress(LayoutOptionEnum.twoViewsInRow)}
+          variant={
+            layout === LayoutOptionEnum.twoViewsInRow ? 'primary' : 'classic'
+          }
         />
 
-        <TabButton
+        <HomeListButton
           label={LayoutOptionEnum.threeViewsInRow}
-          setLayout={setLayout}
-          layout={layout}
-          itemIdentifier={LayoutOptionEnum.threeViewsInRow}
+          onPress={handlePress(LayoutOptionEnum.threeViewsInRow)}
+          variant={
+            layout === LayoutOptionEnum.threeViewsInRow ? 'primary' : 'classic'
+          }
         />
       </View>
       <HomeListContainer isHorizontalScrollable={getColumnCount() > 1}>
