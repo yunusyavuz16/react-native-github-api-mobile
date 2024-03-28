@@ -1,9 +1,4 @@
-import {
-  Modal,
-  Text,
-  TouchableOpacity,
-  View
-} from 'react-native';
+import {Modal, Text, TouchableOpacity, View} from 'react-native';
 import {
   backgroundColorStyles,
   borderRadiusStyles,
@@ -16,13 +11,14 @@ import {
   textColorStyles,
   widthStyles,
 } from '../../../../shared/styles';
+import {memo} from 'react';
 
 const RepoModal: React.FC<{
   modalVisible: boolean;
   closeModal: () => void;
   name: string;
   description: string;
-}> = ({modalVisible, closeModal, name, description}) => {
+}> = memo(({modalVisible, closeModal, name, description}) => {
   return (
     <Modal
       testID="modal-container"
@@ -70,6 +66,6 @@ const RepoModal: React.FC<{
       </View>
     </Modal>
   );
-};
+});
 
 export default RepoModal;

@@ -1,6 +1,6 @@
-import React, { useCallback, useState } from 'react';
-import { FlatList, View } from 'react-native';
-import { IRepository } from '../../shared/models/githubAPIResponse';
+import React, {useCallback, useState} from 'react';
+import {FlatList, View} from 'react-native';
+import {IRepository} from '../../shared/models/githubAPIResponse';
 import {
   backgroundColorStyles,
   borderRadiusStyles,
@@ -17,9 +17,10 @@ import RepoModal from './components/RepoModal';
 import RepositoryItem from './components/RepositoryItem';
 import TabHeader from './components/TabHeader';
 import useGithubAPI from './hooks/useGithubAPI';
-import { LayoutOptionEnum } from './models';
+import {LayoutOptionEnum} from './models';
 
 const HomeScreen = () => {
+  //#region Hooks
   const {
     errorRepositories,
     loadingRepositories,
@@ -28,21 +29,27 @@ const HomeScreen = () => {
     handlePreviousPage,
     pageNumber,
   } = useGithubAPI();
+  //#endregion
 
+  //#region State
   const [layout, setLayout] = useState<LayoutOptionEnum>(
     LayoutOptionEnum.oneViewInRow,
   );
   const [selectedRepository, setSelectedRepository] =
     useState<IRepository | null>(null);
   const [modalVisible, setModalVisible] = useState(false);
+  //#endregion
 
+  //#regşon useMemo data
   const columnWidth = React.useMemo(() => {
     const longestItem = repositories.reduce((acc, item) => {
       return item.full_name.length > acc.length ? item.full_name : acc;
     }, '');
     return longestItem.length;
   }, [repositories]);
+  //#endregion
 
+  //#region Functions
   const getColumnCount = () => {
     switch (layout) {
       case 'Bir görünüm':
@@ -74,6 +81,7 @@ const HomeScreen = () => {
   const closeModal = useCallback(() => {
     setModalVisible(false);
   }, []);
+  //#endregion
 
   return (
     <View
@@ -86,7 +94,11 @@ const HomeScreen = () => {
         borderRadiusStyles.borderRadius,
         borderStyles.borderWhite,
       ]}>
+      {/* Tab Start */}
       <TabHeader handlePress={handlePressTab} layout={layout} />
+      {/* Tab End */}
+
+      {/* List Start */}
       <HomeListContainer isHorizontalScrollable={getColumnCount() > 1}>
         <FlatList
           ListEmptyComponent={loadingRepositories ? <HomeListSkeleton /> : null}
@@ -107,17 +119,24 @@ const HomeScreen = () => {
           numColumns={getColumnCount()}
         />
       </HomeListContainer>
+      {/* List End */}
+
+      {/* Footer Start */}
       <Footer
         pageNumber={pageNumber}
         handlePreviousPage={handlePreviousPage}
         handleNextPage={handleNextPage}
       />
+      {/* Footer End */}
+
+      {/* Modal Start */}
       <RepoModal
         modalVisible={modalVisible}
         closeModal={closeModal}
         description={selectedRepository?.description || ''}
         name={selectedRepository?.name || ''}
       />
+      {/* Modal End */}
     </View>
   );
 };
