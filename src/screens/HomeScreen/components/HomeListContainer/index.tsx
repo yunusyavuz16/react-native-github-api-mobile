@@ -15,6 +15,7 @@ const HomeListContainer: React.FC<IHomeListContainer> = ({
     <>
       {isHorizontalScrollable ? (
         <ScrollView
+          testID="home-list-container-scrollview"
           horizontal
           showsHorizontalScrollIndicator={false}
           directionalLockEnabled={true}

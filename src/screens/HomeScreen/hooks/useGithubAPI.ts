@@ -39,7 +39,9 @@ const useGithubAPI = () => {
 
       // api call
       try {
+        // create url
         const url: string = API_URL + API_URL_EXTENSION;
+        // replace pageNumber and itemCount
         const newUrl = url
           .replace('{{pageNumber}}', pageNumber.toString())
           .replace('{{itemCount}}', '10');
@@ -58,9 +60,8 @@ const useGithubAPI = () => {
         setLoadingRepositories(false);
       }
     };
-
+    
     if (!pageNumber) return;
-
     fetchGithubAPI();
   }, [pageNumber]);
 

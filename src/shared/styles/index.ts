@@ -102,7 +102,7 @@ export const backgroundColorStyles = StyleSheet.create({
 
 export const textColorStyles = StyleSheet.create({
   textColor: {
-    color: 'black',
+    color: COLORS.black,
   },
   textColorPrimary: {
     color: COLORS.primary,

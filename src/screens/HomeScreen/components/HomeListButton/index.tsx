@@ -1,9 +1,5 @@
 import React from 'react';
-import {
-  GestureResponderEvent,
-  Text,
-  TouchableOpacity
-} from 'react-native';
+import {GestureResponderEvent, Text, TouchableOpacity} from 'react-native';
 import {
   backgroundColorStyles,
   borderRadiusStyles,
@@ -12,15 +8,16 @@ import {
   textColorStyles,
 } from '../../../../shared/styles';
 
+export type ButtonVariant =
+  | 'primary'
+  | 'secondary'
+  | 'classic'
+  | 'bordered-primary'
+  | 'bordered-secondary';
 interface IHomeListButton {
   label: string;
   isDisabled?: boolean;
-  variant:
-    | 'primary'
-    | 'secondary'
-    | 'classic'
-    | 'bordered-primary'
-    | 'bordered-secondary';
+  variant: ButtonVariant;
   onPress?: ((event: GestureResponderEvent) => void) | undefined;
 }
 
@@ -74,6 +71,7 @@ const HomeListButton: React.FC<IHomeListButton> = ({
 
   return (
     <TouchableOpacity
+      testID="home-list-button"
       disabled={isDisabled}
       style={[
         paddingStyles.padding,
@@ -82,7 +80,9 @@ const HomeListButton: React.FC<IHomeListButton> = ({
         ...getButtonStyle(),
       ]}
       onPress={onPress}>
-      <Text style={getTextColorStyle()}>{label}</Text>
+      <Text testID="home-list-button-text" style={getTextColorStyle()}>
+        {label}
+      </Text>
     </TouchableOpacity>
   );
 };

@@ -1,5 +1,4 @@
 import {Text, TouchableOpacity, View} from 'react-native';
-import {showMessage} from 'react-native-flash-message';
 import {
   borderStyles,
   marginStyles,
@@ -16,10 +15,7 @@ interface IRepositoryItemProps {
 const RepositoryItem: React.FC<IRepositoryItemProps> = memo(
   ({full_name, width}) => {
     const showToast = () => {
-      showMessage({
-        message: full_name,
-        type: 'info',
-      });
+      console.log('RepositoryItem');
     };
 
     return (

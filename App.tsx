@@ -1,7 +1,6 @@
 import React from 'react';
 import {SafeAreaView, StatusBar, useColorScheme} from 'react-native';
 
-import FlashMessage from 'react-native-flash-message';
 import {Colors} from 'react-native/Libraries/NewAppScreen';
 import HomeScreen from './src/screens/HomeScreen';
 import {
@@ -23,8 +22,6 @@ function App(): React.JSX.Element {
       style={[flexStyles.flex, heightStyles.hFull, widthStyles.wFull]}
       // responsive design
     >
-      <FlashMessage />
-
       <StatusBar backgroundColor={COLORS.primary} />
       <HomeScreen />
     </SafeAreaView>
