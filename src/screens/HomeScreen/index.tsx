@@ -1,23 +1,21 @@
-import React, {useState} from 'react';
-import {FlatList, Text, TouchableOpacity, View} from 'react-native';
+import React, { useState } from 'react';
+import { FlatList, View } from 'react-native';
 import {
   backgroundColorStyles,
   borderRadiusStyles,
   borderStyles,
   flexStyles,
-  fontStyles,
   marginStyles,
   paddingStyles,
-  shadowStyles,
-  textColorStyles,
+  shadowStyles
 } from '../../shared/styles';
 import HomeListContainer from './components/HomeListContainer';
+import Footer from './components/HomeListFooter';
 import HomeListSkeleton from './components/HomeListSkeleton';
 import RepositoryItem from './components/RepositoryItem';
 import TabButton from './components/TabButton';
 import useGithubAPI from './hooks/useGithubAPI';
-import {LayoutOptionEnum} from './models';
-import Footer from './components/HomeListFooter';
+import { LayoutOptionEnum } from './models';
 
 const HomeScreen = () => {
   const {
