@@ -1,4 +1,4 @@
-## Step 1: Uygulama Paketlerini İndirin
+## Adım 1: Uygulama Paketlerini İndirin
 
 ### Android İçin
 
@@ -28,7 +28,7 @@ pod install or npx pod install
 ```
 
 
-## Step 2: Metro' yu Çalıştır
+## Adım 2: Metro' yu Çalıştırın
 
 ```bash
 # using npm
@@ -38,7 +38,7 @@ npm start
 yarn start
 ```
 
-## Step 3: Uygulamayı Çalıştır
+## Adım 3: Uygulamayı Çalıştırın
 
 ### Android İçin
 
