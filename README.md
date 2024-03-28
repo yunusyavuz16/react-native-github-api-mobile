@@ -1,18 +1,17 @@
 ## Proje Yapısı ve İşleyişi
 
 Proje tek ekrandan oluşmaktadır. Ekranın en üstünde, bir satırda kaç sütun olacağını ayarlayabileceğimiz 3 buton bulunmaktadır.
-Hemen altında listemiz bulunmaktadır ve data çekimi esnasında güzel bir görünüm için react-native-skeleton-placeholder kullanılmıştır.
+Hemen altında listemiz bulunmaktadır ve data çekimi esnasında güzel bir görünüm için `react-native-skeleton-placeholder` kullanılmıştır.
 Listenin altında da sayfalama sistemini oluşturan footer yapımız bulunmaktadır.
 
-Veri çekme ve depolama için bir custom hook yazılmıştır.
-Eğer daha önce ilgili sayfa verisi çekilmiş ise veri çekilmeden react-native-async-storage üzerinden veri okunmaktadır.
-Uygulama kapandığında da verinin kalması için redux-persist kullanılmıştır.
-Global state management için react-redux ve redux-toolkit kullanılmıştır.
-ApiUrl ve benzeri verilerin güvenli bir şekilde depolanması için .env dosyası oluşturulmuştur. Bunun için de react-native-dotenv kütüphanesi entegre edilmiştir.
+Veri çekme ve depolama için bir `custom hook` yazılmıştır.
+Eğer daha önce ilgili sayfa verisi çekilmiş ise veri çekilmeden `react-native-async-storage` üzerinden veri okunmaktadır.
+Uygulama kapandığında da verinin kalması için `redux-persist` kullanılmıştır.
+Global state management için `react-redux` ve `redux-toolkit` kullanılmıştır.
+ApiUrl ve benzeri verilerin güvenli bir şekilde depolanması için `.env` dosyası oluşturulmuştur. Bunun için de `react-native-dotenv` kütüphanesi entegre edilmiştir.
 
-Her bir Home Screen bilşeninin birim testleri yazılmıştır ve custom hook için de birim testler yazılmıştır.
-Aynı zamanda JS ve Native hatalar için react-native-exception-handler kütüphanesi entegre edilmiştir.
-
+Her bir Home Screen bilşeninin `birim testleri` yazılmıştır ve custom hook için de `birim testler` yazılmıştır.
+Aynı zamanda bileşen, JS ve Native hatalar için `react-native-exception-handler` ve `react-native-error-boundary` kütüphaneleri entegre edilmiştir.
 
 ## Adım 1: Uygulama Paketlerini İndirin
 
