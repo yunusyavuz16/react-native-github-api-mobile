@@ -1,11 +1,11 @@
 import React from 'react';
-import { View } from 'react-native';
+import {View} from 'react-native';
 import SkeletonPlaceholder from 'react-native-skeleton-placeholder';
 import {
-    heightStyles,
-    marginStyles,
-    paddingStyles,
-    widthStyles,
+  heightStyles,
+  marginStyles,
+  paddingStyles,
+  widthStyles,
 } from '../../../../shared/styles';
 
 const HomeListSkeleton = () => {
@@ -14,6 +14,7 @@ const HomeListSkeleton = () => {
       <>
         {[1, 2, 3, 5, 6, 7, 8].map((_, index) => (
           <View
+            testID="skeleton-item"
             key={index}
             style={[marginStyles.margin, paddingStyles.padding]}>
             <View
