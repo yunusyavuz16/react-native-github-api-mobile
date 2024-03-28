@@ -134,6 +134,10 @@ export const borderStyles = StyleSheet.create({
     borderColor: 'gray',
     borderWidth: 0.75,
   },
+  borderPrimary: {
+    borderColor: COLORS.primary,
+    borderWidth: 0.75,
+  },
   borderBottomSecondary: {
     borderBottomColor: COLORS.gray,
     borderBottomWidth: 0.75,

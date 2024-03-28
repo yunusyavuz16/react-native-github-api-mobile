@@ -10,6 +10,7 @@
     "test": "jest"
   },
   "dependencies": {
+    "@react-native-community/netinfo": "^11.3.1",
     "@react-native-masked-view/masked-view": "^0.3.1",
     "add": "^2.0.6",
     "react": "18.2.0",

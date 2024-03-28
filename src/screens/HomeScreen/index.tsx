@@ -1,22 +1,34 @@
 import React, {useState} from 'react';
-import {FlatList, ScrollView, View} from 'react-native';
+import {FlatList, Text, TouchableOpacity, View} from 'react-native';
 import {
   backgroundColorStyles,
   borderRadiusStyles,
   borderStyles,
   flexStyles,
+  fontStyles,
   marginStyles,
   paddingStyles,
   shadowStyles,
+  textColorStyles,
 } from '../../shared/styles';
+import HomeListContainer from './components/HomeListContainer';
 import HomeListSkeleton from './components/HomeListSkeleton';
 import RepositoryItem from './components/RepositoryItem';
 import TabButton from './components/TabButton';
 import useGithubAPI from './hooks/useGithubAPI';
 import {LayoutOptionEnum} from './models';
+import Footer from './components/HomeListFooter';
 
 const HomeScreen = () => {
-  const {errorRepositories, loadingRepositories, repositories} = useGithubAPI();
+  const {
+    errorRepositories,
+    loadingRepositories,
+    repositories,
+    handleNextPage,
+    handlePreviousPage,
+    pageNumber,
+  } = useGithubAPI();
+
   const [layout, setLayout] = useState<LayoutOptionEnum>(
     LayoutOptionEnum.oneViewInRow,
   );
@@ -28,13 +40,13 @@ const HomeScreen = () => {
     return longestItem.length;
   }, [repositories]);
 
-  const getColumnCount = (layout: LayoutOptionEnum) => {
+  const getColumnCount = () => {
     switch (layout) {
-      case 'oneViewInRow':
+      case 'Bir görünüm':
         return 1;
-      case 'twoViewsInRow':
+      case 'İki görünüm':
         return 2;
-      case 'threeViewsInRow':
+      case 'Üç görünüm':
         return 3;
       default:
         return 1;
@@ -79,31 +91,7 @@ const HomeScreen = () => {
           itemIdentifier={LayoutOptionEnum.threeViewsInRow}
         />
       </View>
-      {getColumnCount(layout) > 1 ? (
-        <ScrollView
-          horizontal
-          showsHorizontalScrollIndicator={false}
-          directionalLockEnabled={true}
-          alwaysBounceVertical={false}
-          style={[flexStyles.flex]}>
-          <FlatList
-            ListEmptyComponent={
-              loadingRepositories ? <HomeListSkeleton /> : null
-            }
-            data={repositories}
-            renderItem={({item}) => (
-              <RepositoryItem full_name={item.full_name} width={columnWidth} />
-            )}
-            keyExtractor={item => item.id.toString()}
-            removeClippedSubviews={true}
-            initialNumToRender={5}
-            windowSize={5}
-            maxToRenderPerBatch={5}
-            key={layout}
-            numColumns={getColumnCount(layout)}
-          />
-        </ScrollView>
-      ) : (
+      <HomeListContainer isHorizontalScrollable={getColumnCount() > 1}>
         <FlatList
           ListEmptyComponent={loadingRepositories ? <HomeListSkeleton /> : null}
           data={repositories}
@@ -116,9 +104,14 @@ const HomeScreen = () => {
           windowSize={5}
           maxToRenderPerBatch={5}
           key={layout}
-          numColumns={getColumnCount(layout)}
+          numColumns={getColumnCount()}
         />
-      )}
+      </HomeListContainer>
+      <Footer
+        pageNumber={pageNumber}
+        handlePreviousPage={handlePreviousPage}
+        handleNextPage={handleNextPage}
+      />
     </View>
   );
 };

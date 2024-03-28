@@ -1,7 +1,7 @@
 enum LayoutOptionEnum {
-  oneViewInRow = 'oneViewInRow',
-  twoViewsInRow = 'twoViewsInRow',
-  threeViewsInRow = 'threeViewsInRow',
+  oneViewInRow = 'Bir görünüm',
+  twoViewsInRow = 'İki görünüm',
+  threeViewsInRow = 'Üç görünüm',
 }
 
 export {LayoutOptionEnum};

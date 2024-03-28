@@ -1,4 +1,5 @@
 // @ts-ignore
-import {REACT_APP_API_URL} from '@env';
+import {REACT_APP_API_URL, REACT_APP_API_URL_EXTENSION} from '@env';
 
 export const API_URL = REACT_APP_API_URL;
+export const API_URL_EXTENSION = REACT_APP_API_URL_EXTENSION;

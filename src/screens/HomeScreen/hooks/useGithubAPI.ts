@@ -1,11 +1,12 @@
-import {useEffect, useState} from 'react';
+import {useCallback, useEffect, useState} from 'react';
+import {API_URL, API_URL_EXTENSION} from '../../../shared/envVariables';
 import {IRepository} from '../../../shared/models/githubAPIResponse';
-import {API_URL} from '../../../shared/envVariables';
-
-const API_URL_EX = '/repos?type=owner&page=1&per_page=10';
+import checkNetwork from '../../../shared/utils/checkNetwork';
 
 const useGithubAPI = () => {
   const [repositories, setRepositories] = useState<IRepository[]>([]);
+  const [pageNumber, setPageNumber] = useState<number>(1);
+
   const [errorRepositories, setErrorRepositories] = useState<string | null>(
     null,
   );
@@ -13,9 +14,20 @@ const useGithubAPI = () => {
 
   useEffect(() => {
     const fetchGithubAPI = async () => {
+      const check = await checkNetwork();
+      if (!check) {
+        setErrorRepositories('No internet connection.');
+        setLoadingRepositories(false);
+        return;
+      }
       setLoadingRepositories(true);
+
       try {
-        const response = await fetch(API_URL + API_URL_EX);
+        const url: string = API_URL + API_URL_EXTENSION;
+        const newUrl = url
+          .replace('{{pageNumber}}', pageNumber.toString())
+          .replace('{{itemCount}}', '10');
+        const response = await fetch(newUrl);
         const data = await response.json();
         setRepositories(data);
       } catch (error: unknown) {
@@ -28,11 +40,26 @@ const useGithubAPI = () => {
         setLoadingRepositories(false);
       }
     };
-
+    if (!pageNumber) return;
     fetchGithubAPI();
+  }, [pageNumber]);
+
+  const handleNextPage = useCallback(() => {
+    setPageNumber(prev => prev + 1);
   }, []);
 
-  return {repositories, errorRepositories, loadingRepositories};
+  const handlePreviousPage = useCallback(() => {
+    setPageNumber(prev => prev - 1);
+  }, []);
+
+  return {
+    repositories,
+    errorRepositories,
+    loadingRepositories,
+    handleNextPage,
+    handlePreviousPage,
+    pageNumber,
+  };
 };
 
 export default useGithubAPI;
