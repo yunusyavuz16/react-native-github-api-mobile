@@ -9,6 +9,7 @@ import {
   heightStyles,
   widthStyles,
 } from './src/shared/styles';
+import ErrorBoundary from 'react-native-error-boundary';
 
 function App(): React.JSX.Element {
   const isDarkMode = useColorScheme() === 'dark';
@@ -18,13 +19,13 @@ function App(): React.JSX.Element {
   };
 
   return (
-    <SafeAreaView
-      style={[flexStyles.flex, heightStyles.hFull, widthStyles.wFull]}
-      // responsive design
-    >
-      <StatusBar backgroundColor={COLORS.primary} />
-      <HomeScreen />
-    </SafeAreaView>
+    <ErrorBoundary>
+      <SafeAreaView
+        style={[flexStyles.flex, heightStyles.hFull, widthStyles.wFull]}>
+        <StatusBar backgroundColor={COLORS.primary} />
+        <HomeScreen />
+      </SafeAreaView>
+    </ErrorBoundary>
   );
 }
 

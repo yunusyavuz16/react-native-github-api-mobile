@@ -1,6 +1,8 @@
-## Adım 1: Uygulama Paketlerini İndirin
+## Proje Yapısı ve İşleyişi
 
-### Android İçin
+
+
+## Adım 1: Uygulama Paketlerini İndirin
 
 ```bash
 # using npm
@@ -12,13 +14,6 @@ yarn install
 
 ### iOS İçin
 
-```bash
-# using npm
-npm install
-
-# OR using Yarn
-yarn install
-```
 Podları indirin
 
 ```bash

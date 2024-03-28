@@ -1,7 +1,6 @@
-import React, {useCallback, useState} from 'react';
-import {FlatList, View} from 'react-native';
-import {useDispatch} from 'react-redux';
-import {IRepository} from '../../shared/models/githubAPIResponse';
+import React, { useCallback, useState } from 'react';
+import { FlatList, View } from 'react-native';
+import { IRepository } from '../../shared/models/githubAPIResponse';
 import {
   backgroundColorStyles,
   borderRadiusStyles,
@@ -18,7 +17,7 @@ import RepoModal from './components/RepoModal';
 import RepositoryItem from './components/RepositoryItem';
 import TabHeader from './components/TabHeader';
 import useGithubAPI from './hooks/useGithubAPI';
-import {LayoutOptionEnum} from './models';
+import { LayoutOptionEnum } from './models';
 
 const HomeScreen = () => {
   const {
