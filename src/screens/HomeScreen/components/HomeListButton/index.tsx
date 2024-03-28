@@ -1,11 +1,9 @@
-import {
-  View,
-  Text,
-  TouchableOpacity,
-  GestureResponderEvent,
-} from 'react-native';
 import React from 'react';
-import {LayoutOptionEnum} from '../../models';
+import {
+  GestureResponderEvent,
+  Text,
+  TouchableOpacity
+} from 'react-native';
 import {
   backgroundColorStyles,
   borderRadiusStyles,

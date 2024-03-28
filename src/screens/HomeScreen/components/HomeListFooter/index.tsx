@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, View } from 'react-native';
+import {Text, View} from 'react-native';
 import {
   flexStyles,
   fontStyles,
@@ -22,6 +22,7 @@ const Footer: React.FC<IFooterProps> = ({
   return (
     <View
       style={[
+        marginStyles.margin,
         marginStyles.marginTop20,
         flexStyles.flexRow,
         flexStyles.justifySpaceBetween,

@@ -80,6 +80,9 @@ export const marginStyles = StyleSheet.create({
   marginBottom20: {
     marginBottom: 20,
   },
+  marginTop10: {
+    marginTop: 10,
+  },
   marginHorizontal20: {
     marginHorizontal: 20,
   },

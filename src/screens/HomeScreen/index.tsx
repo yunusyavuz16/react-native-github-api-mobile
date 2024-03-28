@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useCallback, useState} from 'react';
 import {FlatList, View} from 'react-native';
 import {
   backgroundColorStyles,
@@ -13,9 +13,9 @@ import HomeListContainer from './components/HomeListContainer';
 import Footer from './components/HomeListFooter';
 import HomeListSkeleton from './components/HomeListSkeleton';
 import RepositoryItem from './components/RepositoryItem';
+import TabHeader from './components/TabHeader';
 import useGithubAPI from './hooks/useGithubAPI';
 import {LayoutOptionEnum} from './models';
-import HomeListButton from './components/HomeListButton';
 
 const HomeScreen = () => {
   const {
@@ -51,9 +51,12 @@ const HomeScreen = () => {
     }
   };
 
-  const handlePress = (itemIdentifier: LayoutOptionEnum) => () => {
-    setLayout(itemIdentifier);
-  };
+  const handlePress = useCallback(
+    (itemIdentifier: LayoutOptionEnum) => () => {
+      setLayout(itemIdentifier);
+    },
+    [],
+  );
 
   return (
     <View
@@ -66,36 +69,7 @@ const HomeScreen = () => {
         borderRadiusStyles.borderRadius,
         borderStyles.borderWhite,
       ]}>
-      <View
-        style={[
-          flexStyles.flexRow,
-          flexStyles.justifySpaceAround,
-          marginStyles.marginBottom20,
-        ]}>
-        <HomeListButton
-          label={LayoutOptionEnum.oneViewInRow}
-          onPress={handlePress(LayoutOptionEnum.oneViewInRow)}
-          variant={
-            layout === LayoutOptionEnum.oneViewInRow ? 'primary' : 'classic'
-          }
-        />
-
-        <HomeListButton
-          label={LayoutOptionEnum.twoViewsInRow}
-          onPress={handlePress(LayoutOptionEnum.twoViewsInRow)}
-          variant={
-            layout === LayoutOptionEnum.twoViewsInRow ? 'primary' : 'classic'
-          }
-        />
-
-        <HomeListButton
-          label={LayoutOptionEnum.threeViewsInRow}
-          onPress={handlePress(LayoutOptionEnum.threeViewsInRow)}
-          variant={
-            layout === LayoutOptionEnum.threeViewsInRow ? 'primary' : 'classic'
-          }
-        />
-      </View>
+      <TabHeader handlePress={handlePress} layout={layout} />
       <HomeListContainer isHorizontalScrollable={getColumnCount() > 1}>
         <FlatList
           ListEmptyComponent={loadingRepositories ? <HomeListSkeleton /> : null}
