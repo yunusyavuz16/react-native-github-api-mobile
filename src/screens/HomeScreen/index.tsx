@@ -40,7 +40,7 @@ const HomeScreen = () => {
   const [modalVisible, setModalVisible] = useState(false);
   //#endregion
 
-  //#regşon useMemo data
+  //#region useMemo variables
   const columnWidth = React.useMemo(() => {
     const longestItem = repositories.reduce((acc, item) => {
       return item.full_name.length > acc.length ? item.full_name : acc;
