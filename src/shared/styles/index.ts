@@ -14,6 +14,9 @@ export const flexStyles = StyleSheet.create({
   flex: {
     flex: 1,
   },
+  flexWrap: {
+    flexWrap: 'wrap',
+  },
   flexGrow: {
     flexGrow: 1,
   },
@@ -68,6 +71,9 @@ export const paddingStyles = StyleSheet.create({
 });
 
 export const marginStyles = StyleSheet.create({
+  marginStart5: {
+    marginStart: 5,
+  },
   margin: {
     margin: 10,
   },
@@ -89,6 +95,9 @@ export const marginStyles = StyleSheet.create({
 });
 
 export const backgroundColorStyles = StyleSheet.create({
+  opacity: {
+    opacity: 0.5,
+  },
   backgroundColor: {
     backgroundColor: 'white',
   },
@@ -122,6 +131,9 @@ export const widthStyles = StyleSheet.create({
   w200: {
     width: 200,
   },
+  w80: {
+    width: '80%',
+  },
 });
 
 export const heightStyles = StyleSheet.create({
@@ -134,6 +146,9 @@ export const heightStyles = StyleSheet.create({
 
   hFull: {
     height: '100%',
+  },
+  hAuto: {
+    height: 'auto',
   },
 });
 
@@ -181,5 +196,23 @@ export const fontStyles = StyleSheet.create({
   },
   fontNormal: {
     fontWeight: 'normal',
+  },
+});
+
+export const elevationStyles = StyleSheet.create({
+  elevation1: {
+    elevation: 1,
+  },
+  elevation2: {
+    elevation: 2,
+  },
+  elevation3: {
+    elevation: 3,
+  },
+  elevation4: {
+    elevation: 4,
+  },
+  elevation10: {
+    elevation: 10,
   },
 });

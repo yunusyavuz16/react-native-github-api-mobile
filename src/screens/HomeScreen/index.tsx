@@ -1,5 +1,7 @@
 import React, {useCallback, useState} from 'react';
 import {FlatList, View} from 'react-native';
+import {useDispatch} from 'react-redux';
+import {IRepository} from '../../shared/models/githubAPIResponse';
 import {
   backgroundColorStyles,
   borderRadiusStyles,
@@ -12,11 +14,11 @@ import {
 import HomeListContainer from './components/HomeListContainer';
 import Footer from './components/HomeListFooter';
 import HomeListSkeleton from './components/HomeListSkeleton';
+import RepoModal from './components/RepoModal';
 import RepositoryItem from './components/RepositoryItem';
 import TabHeader from './components/TabHeader';
 import useGithubAPI from './hooks/useGithubAPI';
 import {LayoutOptionEnum} from './models';
-import {IRepository} from '../../shared/models/githubAPIResponse';
 
 const HomeScreen = () => {
   const {
@@ -31,6 +33,9 @@ const HomeScreen = () => {
   const [layout, setLayout] = useState<LayoutOptionEnum>(
     LayoutOptionEnum.oneViewInRow,
   );
+  const [selectedRepository, setSelectedRepository] =
+    useState<IRepository | null>(null);
+  const [modalVisible, setModalVisible] = useState(false);
 
   const columnWidth = React.useMemo(() => {
     const longestItem = repositories.reduce((acc, item) => {
@@ -61,10 +66,15 @@ const HomeScreen = () => {
 
   const handlePressItem = useCallback(
     (item: IRepository) => () => {
-      console.log('Item pressed');
+      setSelectedRepository(item);
+      setModalVisible(true);
     },
     [],
   );
+
+  const closeModal = useCallback(() => {
+    setModalVisible(false);
+  }, []);
 
   return (
     <View
@@ -102,6 +112,12 @@ const HomeScreen = () => {
         pageNumber={pageNumber}
         handlePreviousPage={handlePreviousPage}
         handleNextPage={handleNextPage}
+      />
+      <RepoModal
+        modalVisible={modalVisible}
+        closeModal={closeModal}
+        description={selectedRepository?.description || ''}
+        name={selectedRepository?.name || ''}
       />
     </View>
   );
