@@ -9,41 +9,44 @@ interface ITabHeaderProps {
   layout: string;
 }
 
-const TabHeader: React.FC<ITabHeaderProps> = ({handlePress, layout}) => {
-  return (
-    <View
-      style={[
-        flexStyles.flexRow,
-        flexStyles.justifySpaceAround,
-        marginStyles.margin,
+const TabHeader: React.FC<ITabHeaderProps> = React.memo(
+  ({handlePress, layout}) => {
+    return (
+      <View
+        testID='tab-header-container'
+        style={[
+          flexStyles.flexRow,
+          flexStyles.justifySpaceAround,
+          marginStyles.margin,
 
-        marginStyles.marginBottom20,
-      ]}>
-      <HomeListButton
-        label={LayoutOptionEnum.oneViewInRow}
-        onPress={handlePress(LayoutOptionEnum.oneViewInRow)}
-        variant={
-          layout === LayoutOptionEnum.oneViewInRow ? 'primary' : 'classic'
-        }
-      />
+          marginStyles.marginBottom20,
+        ]}>
+        <HomeListButton
+          label={LayoutOptionEnum.oneViewInRow}
+          onPress={handlePress(LayoutOptionEnum.oneViewInRow)}
+          variant={
+            layout === LayoutOptionEnum.oneViewInRow ? 'primary' : 'classic'
+          }
+        />
 
-      <HomeListButton
-        label={LayoutOptionEnum.twoViewsInRow}
-        onPress={handlePress(LayoutOptionEnum.twoViewsInRow)}
-        variant={
-          layout === LayoutOptionEnum.twoViewsInRow ? 'primary' : 'classic'
-        }
-      />
+        <HomeListButton
+          label={LayoutOptionEnum.twoViewsInRow}
+          onPress={handlePress(LayoutOptionEnum.twoViewsInRow)}
+          variant={
+            layout === LayoutOptionEnum.twoViewsInRow ? 'primary' : 'classic'
+          }
+        />
 
-      <HomeListButton
-        label={LayoutOptionEnum.threeViewsInRow}
-        onPress={handlePress(LayoutOptionEnum.threeViewsInRow)}
-        variant={
-          layout === LayoutOptionEnum.threeViewsInRow ? 'primary' : 'classic'
-        }
-      />
-    </View>
-  );
-};
+        <HomeListButton
+          label={LayoutOptionEnum.threeViewsInRow}
+          onPress={handlePress(LayoutOptionEnum.threeViewsInRow)}
+          variant={
+            layout === LayoutOptionEnum.threeViewsInRow ? 'primary' : 'classic'
+          }
+        />
+      </View>
+    );
+  },
+);
 
 export default TabHeader;

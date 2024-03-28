@@ -16,6 +16,7 @@ import RepositoryItem from './components/RepositoryItem';
 import TabHeader from './components/TabHeader';
 import useGithubAPI from './hooks/useGithubAPI';
 import {LayoutOptionEnum} from './models';
+import {IRepository} from '../../shared/models/githubAPIResponse';
 
 const HomeScreen = () => {
   const {
@@ -51,9 +52,16 @@ const HomeScreen = () => {
     }
   };
 
-  const handlePress = useCallback(
+  const handlePressTab = useCallback(
     (itemIdentifier: LayoutOptionEnum) => () => {
       setLayout(itemIdentifier);
+    },
+    [],
+  );
+
+  const handlePressItem = useCallback(
+    (item: IRepository) => () => {
+      console.log('Item pressed');
     },
     [],
   );
@@ -69,13 +77,17 @@ const HomeScreen = () => {
         borderRadiusStyles.borderRadius,
         borderStyles.borderWhite,
       ]}>
-      <TabHeader handlePress={handlePress} layout={layout} />
+      <TabHeader handlePress={handlePressTab} layout={layout} />
       <HomeListContainer isHorizontalScrollable={getColumnCount() > 1}>
         <FlatList
           ListEmptyComponent={loadingRepositories ? <HomeListSkeleton /> : null}
           data={repositories}
           renderItem={({item}) => (
-            <RepositoryItem full_name={item.full_name} width={columnWidth} />
+            <RepositoryItem
+              handlePress={handlePressItem(item)}
+              full_name={item.full_name}
+              width={columnWidth}
+            />
           )}
           keyExtractor={item => item.id.toString()}
           removeClippedSubviews={true}

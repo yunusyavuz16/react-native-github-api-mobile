@@ -10,17 +10,15 @@ import {memo} from 'react';
 interface IRepositoryItemProps {
   full_name: string;
   width: number | undefined;
+  handlePress: () => void;
 }
 
 const RepositoryItem: React.FC<IRepositoryItemProps> = memo(
-  ({full_name, width}) => {
-    const showToast = () => {
-      console.log('RepositoryItem');
-    };
-
+  ({full_name, width, handlePress}) => {
     return (
-      <TouchableOpacity onPress={showToast}>
+      <TouchableOpacity onPress={handlePress}>
         <View
+          testID="repository-item"
           style={[
             paddingStyles.padding20,
             marginStyles.marginHorizontal20,
