@@ -43,18 +43,8 @@ const RepoModal: React.FC<{
           ]}>
           {(name || description) && (
             <View style={(flexStyles.flex, flexStyles.flexGrow)}>
-              <View style={[flexStyles.flexRow, flexStyles.flexWrap]}>
-                <Text style={[textColorStyles.textColor, fontStyles.fontBold]}>
-                  Ad:
-                </Text>
-                <Text style={marginStyles.marginStart5}>{name}</Text>
-              </View>
-              <View style={[flexStyles.flexRow, flexStyles.flexWrap]}>
-                <Text style={[textColorStyles.textColor, fontStyles.fontBold]}>
-                  Tanım:
-                </Text>
-                <Text style={marginStyles.marginStart5}>{description}</Text>
-              </View>
+              <KeyValue value={name} keyName="Ad:" />
+              <KeyValue value={description} keyName="Tanım:" />
               <TouchableOpacity
                 onPress={closeModal}
                 style={marginStyles.marginTop10}>
@@ -68,4 +58,15 @@ const RepoModal: React.FC<{
   );
 });
 
+function KeyValue({value, keyName}: {value: string; keyName: string}) {
+  return (
+    <View style={[flexStyles.flexRow, flexStyles.flexWrap]}>
+      <Text style={[textColorStyles.textColor, fontStyles.fontBold]}>
+        {keyName}
+      </Text>
+      <Text style={marginStyles.marginStart5}>{value}</Text>
+    </View>
+  );
+}
 export default RepoModal;
+
