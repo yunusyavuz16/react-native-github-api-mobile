@@ -57,7 +57,7 @@ describe('RepositoryItem', () => {
     const repositoryItem = getByTestId('repository-item');
 
     expect(repositoryItem).toHaveStyle({
-      padding: 20,
+      padding: 10,
       marginHorizontal: 20,
     });
 

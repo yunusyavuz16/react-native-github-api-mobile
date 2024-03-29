@@ -53,7 +53,6 @@ describe('TabHeader', () => {
       flexDirection: 'row',
       justifyContent: 'space-around',
       margin: 10,
-      marginBottom: 20,
     });
   });
 });

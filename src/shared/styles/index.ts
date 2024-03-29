@@ -93,6 +93,9 @@ export const marginStyles = StyleSheet.create({
   marginHorizontal20: {
     marginHorizontal: 20,
   },
+  marginHorizontal10: {
+    marginHorizontal: 10,
+  },
 });
 
 export const backgroundColorStyles = StyleSheet.create({
