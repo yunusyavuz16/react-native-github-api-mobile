@@ -1,9 +1,12 @@
-import {Text, TouchableOpacity, View} from 'react-native';
+import {Image, Text, TouchableOpacity, View} from 'react-native';
 import {
   borderStyles,
+  flexStyles,
+  heightStyles,
   marginStyles,
   paddingStyles,
   textColorStyles,
+  widthStyles,
 } from '../../../../shared/styles';
 import {memo} from 'react';
 
@@ -20,11 +23,21 @@ const RepositoryItem: React.FC<IRepositoryItemProps> = memo(
         <View
           testID="repository-item"
           style={[
-            paddingStyles.padding20,
+            paddingStyles.padding,
             marginStyles.marginHorizontal20,
             {width: width ? width * 9 : undefined},
             borderStyles.borderBottomSecondary,
+            flexStyles.flexRow,
+            flexStyles.alignCenter,
+            flexStyles.gap5,
           ]}>
+          {/* repository image */}
+          <View style={[heightStyles.h35px, widthStyles.w35px]}>
+            <Image
+              style={[heightStyles.h35px, widthStyles.w35px]}
+              source={require('../../../../assets/pngs/repository.png')}
+            />
+          </View>
           <Text style={textColorStyles.textColor}>{full_name}</Text>
         </View>
       </TouchableOpacity>

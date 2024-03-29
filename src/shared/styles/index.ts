@@ -53,6 +53,7 @@ export const flexStyles = StyleSheet.create({
   alignBaseline: {
     alignItems: 'baseline',
   },
+  gap5: {gap: 5},
 });
 
 export const paddingStyles = StyleSheet.create({
@@ -155,6 +156,9 @@ export const widthStyles = StyleSheet.create({
   width50px: {
     width: 50,
   },
+  w35px: {
+    width: 35,
+  },
 });
 
 export const heightStyles = StyleSheet.create({
@@ -164,7 +168,9 @@ export const heightStyles = StyleSheet.create({
   minH50: {
     minHeight: 50,
   },
-
+  h35px: {
+    height: 35,
+  },
   hFull: {
     height: '100%',
   },

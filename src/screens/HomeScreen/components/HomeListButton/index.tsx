@@ -21,7 +21,6 @@ interface IHomeListButton {
   onPress?: ((event: GestureResponderEvent) => void) | undefined;
 }
 
-// change style based on the variant
 
 const HomeListButton: React.FC<IHomeListButton> = ({
   variant,
@@ -29,6 +28,8 @@ const HomeListButton: React.FC<IHomeListButton> = ({
   onPress,
   isDisabled,
 }) => {
+
+// change style based on the variant
   const getButtonStyle = () => {
     switch (variant) {
       case 'primary':

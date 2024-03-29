@@ -100,7 +100,7 @@ const HomeScreen = () => {
       {/* Tab End */}
 
       {/* List Start */}
-      <HomeListErrorContainer error={"error"}>
+      <HomeListErrorContainer error={errorRepositories}>
         <HomeListContainer isHorizontalScrollable={getColumnCount() > 1}>
           <FlatList
             ListEmptyComponent={
@@ -119,6 +119,7 @@ const HomeScreen = () => {
             initialNumToRender={5}
             windowSize={5}
             maxToRenderPerBatch={5}
+            // görünüm değiştiğinde listeyi render et
             key={layout}
             numColumns={getColumnCount()}
           />

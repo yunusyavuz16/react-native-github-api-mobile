@@ -12,7 +12,9 @@ const HomeListSkeleton = () => {
   return (
     <SkeletonPlaceholder>
       <>
-        {[1, 2, 3, 5, 6, 7, 8].map((_, index) => (
+        {/* length props olarak ihtiyaca bağlı olarak alınabilir */}
+        {Array.from({length: 7}).map((_, index) => (
+          // skeleton item
           <View
             testID="skeleton-item"
             key={index}
