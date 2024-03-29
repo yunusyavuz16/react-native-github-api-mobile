@@ -99,7 +99,7 @@ export const backgroundColorStyles = StyleSheet.create({
     opacity: 0.5,
   },
   backgroundColor: {
-    backgroundColor: 'white',
+    backgroundColor: COLORS.white,
   },
   backgroundPrimary: {
     backgroundColor: COLORS.primary,
@@ -190,7 +190,7 @@ export const borderStyles = StyleSheet.create({
     borderBottomWidth: 0.75,
   },
   borderWhite: {
-    borderColor: 'white',
+    borderColor: COLORS.white,
     borderWidth: 0.75,
   },
 });

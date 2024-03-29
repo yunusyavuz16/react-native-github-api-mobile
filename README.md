@@ -2,7 +2,7 @@
 
 - Proje tek ekrandan oluşmaktadır. Ekranın en üstünde, bir satırda kaç sütun olacağını ayarlayabileceğimiz 3 buton bulunmaktadır.
 - Hemen altında listemiz bulunmaktadır ve data çekimi esnasında güzel bir görünüm için `react-native-skeleton-placeholder` kullanılmıştır.
-- Listenin altında da sayfalama sistemini oluşturan footer yapımız bulunmaktadır.
+- Listenin altında da sayfalama sistemini oluşturan footer yapımız bulunmaktadır. İleri ve geri butonları ile sayfa değiştirilebilmektedir.
 
 - Veri çekme ve depolama için bir `custom hook` yazılmıştır.
 - Eğer daha önce ilgili sayfa verisi çekilmiş ise veri çekilmeden `react-native-async-storage` üzerinden veri okunmaktadır.
@@ -80,11 +80,7 @@ yarn ios
 
 ### API Anahtarları ve Hassas Bilgilerin Güvenliği:
 
-Hassas bilgilerin uygulama kodunda doğrudan depolanması yerine, bu tür bilgilerin güvenli bir şekilde saklanmasını sağlayan araçlar veya hizmetler kullanılmalıdır. Örneğin, iOS için Keychain Services veya Android için Güvenli Paylaşılan Tercihler gibi platform spesifik çözümler kullanılabilir.
-
-### Depolama Güvenliği:
-
-Hassas kullanıcı verilerinin depolanması gerekiyorsa, güvenli depolama seçenekleri kullanılmalıdır. Örneğin, React Native projelerinde Async Storage kullanılıyorsa, bu depolama yöntemi sadece hassas olmayan veriler için tercih edilmelidir.
+Hassas bilgilerin uygulama kodunda doğrudan depolanması yerine, bu tür bilgilerin güvenli bir şekilde saklanmasını sağlayan araçlar veya hizmetler kullanılmalıdır. Örneğin, iOS için Keychain Services veya Android için Güvenli Paylaşılan Tercihler gibi platform spesifik çözümler kullanılabilir. Örneğin, React Native projelerinde Async Storage kullanılıyorsa, bu depolama yöntemi sadece hassas olmayan veriler için tercih edilmelidir.
 
 ### Kimlik Doğrulama ve Yetkilendirme:
 

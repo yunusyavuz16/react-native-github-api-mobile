@@ -61,14 +61,14 @@ describe('HomeListButton', () => {
   });
 
   test('applies correct styles for classic variant', () => {
-    testStyle('classic', 'white', '#000000');
+    testStyle('classic', '#FFFFFF', '#000000');
   });
 
   test('applies correct styles for bordered-primary variant', () => {
-    testStyle('bordered-primary', 'white', '#FFFFFF');
+    testStyle('bordered-primary', '#FFFFFF', '#FFFFFF');
   });
 
   test('applies correct styles for bordered-secondary variant', () => {
-    testStyle('bordered-secondary', 'white', '#000000');
+    testStyle('bordered-secondary', '#FFFFFF', '#000000');
   });
 });
