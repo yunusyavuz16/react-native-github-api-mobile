@@ -6,20 +6,16 @@ import '@testing-library/jest-native/extend-expect';
 describe('RepositoryItem', () => {
   // Rendering Test
   test('renders correctly with given props', () => {
-    const full_name = 'octocat/Hello-World';
+    const name = 'octocat/Hello-World';
     const width = 100;
     const handlePress = jest.fn();
 
     const {getByText, getByTestId} = render(
-      <RepositoryItem
-        full_name={full_name}
-        width={width}
-        handlePress={handlePress}
-      />,
+      <RepositoryItem name={name} width={width} handlePress={handlePress} />,
     );
 
     const repositoryItem = getByTestId('repository-item');
-    expect(getByText(full_name)).toBeTruthy();
+    expect(getByText(name)).toBeTruthy();
     expect(repositoryItem).toHaveStyle({width: width * 8});
   });
 
@@ -29,7 +25,7 @@ describe('RepositoryItem', () => {
 
     const {getByTestId} = render(
       <RepositoryItem
-        full_name="octocat/Hello-World"
+        name="octocat/Hello-World"
         width={100}
         handlePress={handlePress}
       />,
@@ -48,7 +44,7 @@ describe('RepositoryItem', () => {
   test('applies correct styles based on props', () => {
     const {getByTestId} = render(
       <RepositoryItem
-        full_name="octocat/Hello-World"
+        name="octocat/Hello-World"
         width={100}
         handlePress={() => {}}
       />,

@@ -1,13 +1,13 @@
-import React, { useCallback, useState } from 'react';
-import { FlatList, View } from 'react-native';
-import { IRepository } from '../../shared/models/githubAPIResponse';
+import React, {useCallback, useState} from 'react';
+import {FlatList, View} from 'react-native';
+import {IRepository} from '../../shared/models/githubAPIResponse';
 import {
   backgroundColorStyles,
   borderRadiusStyles,
   borderStyles,
   flexStyles,
   marginStyles,
-  shadowStyles
+  shadowStyles,
 } from '../../shared/styles';
 import HomeListContainer from './components/HomeListContainer';
 import HomeListErrorContainer from './components/HomeListErrorContainer';
@@ -17,7 +17,7 @@ import RepoModal from './components/RepoModal';
 import RepositoryItem from './components/RepositoryItem';
 import TabHeader from './components/TabHeader';
 import useGithubAPI from './hooks/useGithubAPI';
-import { LayoutOptionEnum } from './models';
+import {LayoutOptionEnum} from './models';
 
 const HomeScreen = () => {
   //#region Hooks
@@ -42,11 +42,14 @@ const HomeScreen = () => {
 
   //#region useMemo variables
   const columnWidth = React.useMemo(() => {
+    if (layout === 'Bir görünüm') return undefined;
+    
+    // Eğer horiziontal scrollable olacaksa en uzun itemin uzunluğu kadar genişlik verilir.
     const longestItem = repositories.reduce((acc, item) => {
       return item.full_name.length > acc.length ? item.full_name : acc;
     }, '');
     return longestItem.length;
-  }, [repositories]);
+  }, [repositories, layout]);
   //#endregion
 
   //#region Functions
@@ -108,7 +111,7 @@ const HomeScreen = () => {
             renderItem={({item}) => (
               <RepositoryItem
                 handlePress={handlePressItem(item)}
-                full_name={item.full_name}
+                name={item.name}
                 width={columnWidth}
               />
             )}

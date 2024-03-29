@@ -11,13 +11,13 @@ import {
 import {memo} from 'react';
 
 interface IRepositoryItemProps {
-  full_name: string;
+  name: string;
   width: number | undefined;
   handlePress: () => void;
 }
 
 const RepositoryItem: React.FC<IRepositoryItemProps> = memo(
-  ({full_name, width, handlePress}) => {
+  ({name, width, handlePress}) => {
     return (
       <TouchableOpacity onPress={handlePress}>
         <View
@@ -39,7 +39,7 @@ const RepositoryItem: React.FC<IRepositoryItemProps> = memo(
             />
           </View>
           <View>
-            <Text style={[textColorStyles.textColor]}>{full_name}</Text>
+            <Text style={[textColorStyles.textColor]}>{name}</Text>
           </View>
         </View>
       </TouchableOpacity>
