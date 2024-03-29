@@ -1,17 +1,17 @@
-import {Modal, Text, TouchableOpacity, View} from 'react-native';
+import { memo } from 'react';
+import { Modal, Text, TouchableOpacity, View } from 'react-native';
 import {
   backgroundColorStyles,
   borderRadiusStyles,
-  elevationStyles,
   flexStyles,
   fontStyles,
   heightStyles,
   marginStyles,
   paddingStyles,
+  shadowStyles,
   textColorStyles,
-  widthStyles,
+  widthStyles
 } from '../../../../shared/styles';
-import {memo} from 'react';
 
 const RepoModal: React.FC<{
   modalVisible: boolean;
@@ -37,7 +37,7 @@ const RepoModal: React.FC<{
             backgroundColorStyles.backgroundColor,
             paddingStyles.padding20,
             borderRadiusStyles.borderRadius,
-            elevationStyles.elevation10,
+            shadowStyles.shadow,
             heightStyles.hAuto,
             widthStyles.w80,
           ]}>
