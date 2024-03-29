@@ -45,6 +45,9 @@ describe('useGithubAPI', () => {
 
     // in the first render pageNumber is not loaded that is why second render is checked for the data
     expect(result.current.repositories[0]).toEqual(data);
+    expect(result.current.errorRepositories).toBeNull();
+    expect(result.current.pageNumber).toBe(1);
+    expect(result.current.loadingRepositories).toBe(false);
   });
 
   test('should handle error when network is unavailable', async () => {
