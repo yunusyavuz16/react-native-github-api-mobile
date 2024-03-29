@@ -18,6 +18,7 @@ import RepositoryItem from './components/RepositoryItem';
 import TabHeader from './components/TabHeader';
 import useGithubAPI from './hooks/useGithubAPI';
 import {LayoutOptionEnum} from './models';
+import HomeListErrorContainer from './components/HomeListErrorContainer';
 
 const HomeScreen = () => {
   //#region Hooks
@@ -99,26 +100,30 @@ const HomeScreen = () => {
       {/* Tab End */}
 
       {/* List Start */}
-      <HomeListContainer isHorizontalScrollable={getColumnCount() > 1}>
-        <FlatList
-          ListEmptyComponent={loadingRepositories ? <HomeListSkeleton /> : null}
-          data={repositories}
-          renderItem={({item}) => (
-            <RepositoryItem
-              handlePress={handlePressItem(item)}
-              full_name={item.full_name}
-              width={columnWidth}
-            />
-          )}
-          keyExtractor={item => item.id.toString()}
-          removeClippedSubviews={true}
-          initialNumToRender={5}
-          windowSize={5}
-          maxToRenderPerBatch={5}
-          key={layout}
-          numColumns={getColumnCount()}
-        />
-      </HomeListContainer>
+      <HomeListErrorContainer error={"error"}>
+        <HomeListContainer isHorizontalScrollable={getColumnCount() > 1}>
+          <FlatList
+            ListEmptyComponent={
+              loadingRepositories ? <HomeListSkeleton /> : null
+            }
+            data={repositories}
+            renderItem={({item}) => (
+              <RepositoryItem
+                handlePress={handlePressItem(item)}
+                full_name={item.full_name}
+                width={columnWidth}
+              />
+            )}
+            keyExtractor={item => item.id.toString()}
+            removeClippedSubviews={true}
+            initialNumToRender={5}
+            windowSize={5}
+            maxToRenderPerBatch={5}
+            key={layout}
+            numColumns={getColumnCount()}
+          />
+        </HomeListContainer>
+      </HomeListErrorContainer>
       {/* List End */}
 
       {/* Footer Start */}

@@ -6,7 +6,7 @@ export const COLORS = {
   white: '#FFFFFF',
   black: '#000000',
   gray: 'rgb(200,200,200)',
-  danger: '#FF0000',
+  danger: '#F8285A',
   light: '#f9f9f9',
 };
 
@@ -107,6 +107,9 @@ export const backgroundColorStyles = StyleSheet.create({
   backgroundSecondary: {
     backgroundColor: COLORS.secondary,
   },
+  backgroundDanger: {
+    backgroundColor: COLORS.danger,
+  },
 });
 
 export const textColorStyles = StyleSheet.create({
@@ -118,6 +121,21 @@ export const textColorStyles = StyleSheet.create({
   },
   textWhite: {
     color: COLORS.white,
+  },
+  textDanger: {
+    color: COLORS.danger,
+  },
+});
+
+export const textAlignStyles = StyleSheet.create({
+  textAlignCenter: {
+    textAlign: 'center',
+  },
+  textAlignRight: {
+    textAlign: 'right',
+  },
+  textAlignLeft: {
+    textAlign: 'left',
   },
 });
 
@@ -134,6 +152,9 @@ export const widthStyles = StyleSheet.create({
   w80: {
     width: '80%',
   },
+  width50px: {
+    width: 50,
+  },
 });
 
 export const heightStyles = StyleSheet.create({
@@ -149,6 +170,9 @@ export const heightStyles = StyleSheet.create({
   },
   hAuto: {
     height: 'auto',
+  },
+  h50px: {
+    height: 50,
   },
 });
 
@@ -188,6 +212,9 @@ export const borderRadiusStyles = StyleSheet.create({
   borderRadius: {
     borderRadius: 15,
   },
+  borderRadius25: {
+    borderRadius: 25,
+  },
 });
 
 export const fontStyles = StyleSheet.create({
@@ -196,6 +223,12 @@ export const fontStyles = StyleSheet.create({
   },
   fontNormal: {
     fontWeight: 'normal',
+  },
+  font18: {
+    fontSize: 18,
+  },
+  font24: {
+    fontSize: 24,
   },
 });
 
