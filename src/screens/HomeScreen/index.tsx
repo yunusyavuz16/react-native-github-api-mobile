@@ -1,24 +1,23 @@
-import React, {useCallback, useState} from 'react';
-import {FlatList, View} from 'react-native';
-import {IRepository} from '../../shared/models/githubAPIResponse';
+import React, { useCallback, useState } from 'react';
+import { FlatList, View } from 'react-native';
+import { IRepository } from '../../shared/models/githubAPIResponse';
 import {
   backgroundColorStyles,
   borderRadiusStyles,
   borderStyles,
   flexStyles,
   marginStyles,
-  paddingStyles,
-  shadowStyles,
+  shadowStyles
 } from '../../shared/styles';
 import HomeListContainer from './components/HomeListContainer';
+import HomeListErrorContainer from './components/HomeListErrorContainer';
 import Footer from './components/HomeListFooter';
 import HomeListSkeleton from './components/HomeListSkeleton';
 import RepoModal from './components/RepoModal';
 import RepositoryItem from './components/RepositoryItem';
 import TabHeader from './components/TabHeader';
 import useGithubAPI from './hooks/useGithubAPI';
-import {LayoutOptionEnum} from './models';
-import HomeListErrorContainer from './components/HomeListErrorContainer';
+import { LayoutOptionEnum } from './models';
 
 const HomeScreen = () => {
   //#region Hooks
