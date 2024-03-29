@@ -18,8 +18,6 @@ const TabHeader: React.FC<ITabHeaderProps> = React.memo(
           flexStyles.flexRow,
           flexStyles.justifySpaceAround,
           marginStyles.margin,
-
-          marginStyles.marginBottom20,
         ]}>
         <HomeListButton
           label={LayoutOptionEnum.oneViewInRow}

@@ -89,7 +89,6 @@ const HomeScreen = () => {
       style={[
         flexStyles.flex,
         marginStyles.margin,
-        paddingStyles.padding,
         backgroundColorStyles.backgroundColor,
         shadowStyles.shadow,
         borderRadiusStyles.borderRadius,

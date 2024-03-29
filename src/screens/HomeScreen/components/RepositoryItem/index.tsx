@@ -25,7 +25,7 @@ const RepositoryItem: React.FC<IRepositoryItemProps> = memo(
           style={[
             paddingStyles.padding,
             marginStyles.marginHorizontal20,
-            {width: width ? width * 9 : undefined},
+            {width: width ? width * 8 : undefined},
             borderStyles.borderBottomSecondary,
             flexStyles.flexRow,
             flexStyles.alignCenter,
@@ -38,7 +38,9 @@ const RepositoryItem: React.FC<IRepositoryItemProps> = memo(
               source={require('../../../../assets/pngs/repository.png')}
             />
           </View>
-          <Text style={textColorStyles.textColor}>{full_name}</Text>
+          <View>
+            <Text style={[textColorStyles.textColor]}>{full_name}</Text>
+          </View>
         </View>
       </TouchableOpacity>
     );

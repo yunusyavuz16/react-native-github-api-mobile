@@ -20,7 +20,7 @@ describe('RepositoryItem', () => {
 
     const repositoryItem = getByTestId('repository-item');
     expect(getByText(full_name)).toBeTruthy();
-    expect(repositoryItem).toHaveStyle({width: width * 9});
+    expect(repositoryItem).toHaveStyle({width: width * 8});
   });
 
   // Touchable Behavior Test
