@@ -6,7 +6,7 @@
 
 - Veri çekme ve depolama için bir `custom hook` yazılmıştır.
 - Eğer daha önce ilgili sayfa verisi çekilmiş ise veri çekilmeden `react-native-async-storage` üzerinden veri okunmaktadır.
-- Uygulama kapandığında da verinin kalması için `redux-persist` kullanılmıştır.
+- Uygulama kapandığında da verinin unutulmaması için `redux-persist` kullanılmıştır.
 - Global state management için `react-redux` ve `@reduxjs/toolkit` kullanılmıştır.
 - ApiUrl ve benzeri verilerin güvenli bir şekilde depolanması için `.env` dosyası oluşturulmuştur. Bunun için de `react-native-dotenv` kütüphanesi entegre edilmiştir.
 
