@@ -135,6 +135,7 @@ const HomeScreen = () => {
       {/* Footer End */}
 
       {/* Modal Start */}
+      {/* Global de tanımlanması daha doğru olur ancak tek ekran olması sebebiyle bu şekilde tanımlandı. */}
       <RepoModal
         modalVisible={modalVisible}
         closeModal={closeModal}

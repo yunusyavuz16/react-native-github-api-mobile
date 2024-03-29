@@ -13,57 +13,63 @@ const useGithubAPI = () => {
   const [errorRepositories, setErrorRepositories] = useState<string | null>(
     null,
   );
-  const [loadingRepositories, setLoadingRepositories] = useState<boolean>(true);
+  const [loadingRepositories, setLoadingRepositories] =
+    useState<boolean>(false);
 
   useEffect(() => {
-    const fetchGithubAPI = async () => {
-      // get redux repositories state
-      const reduxStories = store.getState().repositoryReducer.repositories as {
-        [key: number]: IRepository[];
-      };
-
-      // check if the data is already in redux
-      if (reduxStories[pageNumber]) {
-        setRepositories(reduxStories[pageNumber]);
-        return;
-      }
-
-      //  check network
-      const check = await checkNetwork();
-      if (!check) {
-        setErrorRepositories('No internet connection.');
-        setLoadingRepositories(false);
-        return;
-      }
-      setLoadingRepositories(true);
-
-      // api call
-      try {
-        // create url
-        const url: string = API_URL + API_URL_EXTENSION;
-        // replace pageNumber and itemCount
-        const newUrl = url
-          .replace('{{pageNumber}}', pageNumber.toString())
-          .replace('{{itemCount}}', '10');
-        const response = await fetch(newUrl);
-        const data = await response.json();
-        // set redux repositories state
-        dispatch(setRepositoriesRedux({key: pageNumber, value: data}));
-        setRepositories(data);
-      } catch (error: unknown) {
-        if (error instanceof Error) {
-          setErrorRepositories(error.message);
-        } else {
-          setErrorRepositories('An unknown error occurred.');
-        }
-      } finally {
-        setLoadingRepositories(false);
-      }
-    };
-    
     if (!pageNumber) return;
     fetchGithubAPI();
   }, [pageNumber]);
+
+  const fetchGithubAPI = async () => {
+    // get redux repositories state
+    const reduxStories = store.getState().repositoryReducer.repositories as {
+      [key: number]: IRepository[];
+    };
+
+    // check if the data is already in redux
+    if (reduxStories[pageNumber]) {
+      setRepositories(reduxStories[pageNumber]);
+      return;
+    }
+
+    //  check network
+    const check = await checkNetwork();
+    if (!check) {
+      setErrorRepositories('No internet connection.');
+      return;
+    }
+
+    // api call
+    await handleRequest();
+  };
+
+  // kullanıcının swipe ile veriyi yenilemesi durumunda kullanılabilir 
+  const handleRequest = async () => {
+    try {
+      setLoadingRepositories(true);
+
+      // create url
+      const url: string = API_URL + API_URL_EXTENSION;
+      // replace pageNumber and itemCount
+      const newUrl = url
+        .replace('{{pageNumber}}', pageNumber.toString())
+        .replace('{{itemCount}}', '10');
+      const response = await fetch(newUrl);
+      const data = await response.json();
+      // set redux repositories state
+      dispatch(setRepositoriesRedux({key: pageNumber, value: data}));
+      setRepositories(data);
+    } catch (error: unknown) {
+      if (error instanceof Error) {
+        setErrorRepositories(error.message);
+      } else {
+        setErrorRepositories('An unknown error occurred.');
+      }
+    } finally {
+      setLoadingRepositories(false);
+    }
+  };
 
   // handle next page button
   const handleNextPage = useCallback(() => {

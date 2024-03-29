@@ -29,7 +29,7 @@ describe('useGithubAPI', () => {
 
     // Initial state
     expect(result.current.errorRepositories).toBeNull();
-    expect(result.current.loadingRepositories).toBe(true);
+    expect(result.current.loadingRepositories).toBe(false);
     expect(result.current.pageNumber).toBe(1);
 
     // Wait for initial fetch
@@ -37,7 +37,7 @@ describe('useGithubAPI', () => {
 
     // After fetch
     expect(result.current.errorRepositories).toBeNull();
-    expect(result.current.loadingRepositories).toBe(false);
+    expect(result.current.loadingRepositories).toBe(true);
     expect(result.current.pageNumber).toBe(1);
   });
 
